@@ -4,8 +4,12 @@ import { checkValidData } from "../utils/validate";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addUser } from "../utils/userSlice";
 
 const Login = () => {
   const email = useRef(null);
@@ -13,6 +17,8 @@ const Login = () => {
   const password = useRef(null);
   const [errMessage, setErrMessage] = useState();
   const [isSignIn, setIsSignIn] = useState(true);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleSigInSignUpToggle = () => {
     setIsSignIn(!isSignIn);
@@ -36,6 +42,27 @@ const Login = () => {
       )
         .then((userCredential) => {
           const user = userCredential.user;
+
+          updateProfile(user, {
+            displayName: name.current.value,
+            photoURL: "https://avatars.githubusercontent.com/u/64205497?v=4",
+          })
+            .then(() => {
+              const { uid, email, displayName, photoURL } = auth.currentUser;
+              dispatch(
+                addUser({
+                  uid: uid,
+                  email: email,
+                  displayName: displayName,
+                  photoURL: photoURL,
+                })
+              );
+            })
+            .catch((error) => {
+              setErrMessage(error.message);
+            });
+
+          navigate("/browse");
           console.log(user);
         })
         .catch((error) => {
@@ -53,6 +80,7 @@ const Login = () => {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
+          navigate("/browse");
           console.log(user);
         })
         .catch((error) => {
@@ -94,7 +122,7 @@ const Login = () => {
         />
         <p className="text-red-500">{errMessage}</p>
         <button
-          className="p-1 w-full my-2 bg-red-700 color-white bg-white rounded-lg"
+          className="p-1 w-full my-2 bg-red-700 color-white bg-brown rounded-lg"
           onClick={() => handleSubmit()}
         >
           {isSignIn ? "Sign In" : "Sign Up"}
