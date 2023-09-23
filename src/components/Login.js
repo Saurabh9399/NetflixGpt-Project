@@ -62,7 +62,7 @@ const Login = () => {
               setErrMessage(error.message);
             });
 
-          navigate("/browse");
+          // navigate("/browse");
           console.log(user);
         })
         .catch((error) => {
@@ -80,7 +80,7 @@ const Login = () => {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          navigate("/browse");
+          // navigate("/browse");
           console.log(user);
         })
         .catch((error) => {
