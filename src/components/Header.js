@@ -10,12 +10,9 @@ const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
-  console.log(user);
   const handleSignout = () => {
     signOut(auth)
-      .then(() => {
-        console.log("sign out success...");
-      })
+      .then(() => {})
       .catch((error) => {
         navigate("/error");
         // An error happened.
@@ -44,16 +41,12 @@ const Header = () => {
   }, []);
   return (
     <div className="absolute w-full px-8 py-2 bg-gradient-to-b from-black z-10 flex justify-between">
-      <img
-        className="w-36"
-        src={LOGO_URL}
-        alt="logo"
-      />
+      <img className="w-36" src={LOGO_URL} alt="logo" />
       {user && (
-        <div className="flex p-2">
-          <img alt="user icon" src={user?.photoURL} className="w-12 h-12" />
-          <button className="text-white font-bold" onClick={handleSignout}>
-            (Sign out)
+        <div className="flex items-center p-2">
+          <img alt="user icon" src={user?.photoURL} className="w-7 h-7 mx-2" />
+          <button className="text-white font-bold hover:opacity-50" onClick={handleSignout}>
+            Sign out
           </button>
         </div>
       )}

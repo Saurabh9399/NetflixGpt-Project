@@ -24,10 +24,6 @@ const Login = () => {
   };
 
   const handleSubmit = () => {
-    console.log("name", name);
-    console.log("email", email);
-    console.log("password", password);
-
     const message = checkValidData(email.current.value, password.current.value);
     setErrMessage(message);
 
@@ -60,9 +56,6 @@ const Login = () => {
             .catch((error) => {
               setErrMessage(error.message);
             });
-
-          // navigate("/browse");
-          console.log(user);
         })
         .catch((error) => {
           const errCode = error.code;
@@ -76,12 +69,7 @@ const Login = () => {
         email.current.value,
         password.current.value
       )
-        .then((userCredential) => {
-          // Signed in
-          const user = userCredential.user;
-          // navigate("/browse");
-          console.log(user);
-        })
+        .then((userCredential) => {})
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
@@ -93,12 +81,15 @@ const Login = () => {
     <div>
       <Header />
       <div className="absolute">
-        <img src={LOGIN_BACKGROUND_IMAGE} />
+        <img alt="background" src={LOGIN_BACKGROUND_IMAGE} />
       </div>
       <form
         onSubmit={(e) => e.preventDefault()}
-        className="w-3/12 absolute bg-black bg-opacity-75 py-20 px-7 my-36 mx-auto right-0 left-0 rounded-lg"
+        className="w-3/12 absolute bg-black bg-opacity-75 py-10 px-7 my-[10%] mx-auto right-0 left-0 rounded-lg"
       >
+        <h2 className="text-white mb-5 text-2xl font-bold">
+          {isSignIn ? "Sign In" : "Sign Up"}
+        </h2>
         {!isSignIn && (
           <input
             ref={name}
@@ -127,7 +118,7 @@ const Login = () => {
           {isSignIn ? "Sign In" : "Sign Up"}
         </button>
         <p className="text-indigo-50 mt-4">
-          {isSignIn ? " New to Netflix ?" : "Already have account !"}{" "}
+          {isSignIn ? " New to Netflix?" : "Already have account!"}{" "}
           <span
             className="text-blue-500 hover:underline"
             onClick={() => handleSigInSignUpToggle()}
