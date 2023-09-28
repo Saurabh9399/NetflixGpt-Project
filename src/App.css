@@ -1,0 +1,7 @@
+/* styles.css or styles.scss */
+/* Hide scrollbar by default */
+::-webkit-scrollbar {
+    display: none;
+  }
+  
+  
