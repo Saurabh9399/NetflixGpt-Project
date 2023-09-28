@@ -16,7 +16,6 @@ const SecondaryContainer = () => {
     },
   };
 
-  console.log(popularMovies);
   return (
     <div className="bg-black" style={hideScrollbarStyles}>
       <div className="relative pl-12 -mt-[14rem] z-20">

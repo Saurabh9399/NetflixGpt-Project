@@ -11,7 +11,6 @@ const useUpcomingSeries = () => {
       API_OPTIONS
     );
     const json = await data.json();
-    console.log("upcoming", json.results);
     dispatch(addUpcomingSeries(json.results));
   };
 

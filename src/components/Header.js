@@ -58,8 +58,9 @@ const Header = () => {
         <div className="flex items-center p-2">
           {showGptSearch && (
             <select
-              className="p-2 m-2 bg-gray-500 text-white rounded"
+              className="p-2 m-2 bg-gray-700 text-white rounded"
               onChange={handleLanguageChange}
+              value={langKey }
             >
               {SUPPORTED_LANGUAGES.map((lang) => (
                 <option key={lang.identifier} value={lang.identifier}>
@@ -69,10 +70,10 @@ const Header = () => {
             </select>
           )}
           <button
-            className="py-2 px-4 m-2 bg-purple-700 text-white rounded"
+            className="py-2 px-4 m-2 bg-purple-800 text-white rounded"
             onClick={handleGptSearch}
           >
-            GPT Search
+            {showGptSearch ? "Home Page" : "GPT Search"}
           </button>
           <img alt="user icon" src={user?.photoURL} className="w-7 h-7 mx-2" />
           <button

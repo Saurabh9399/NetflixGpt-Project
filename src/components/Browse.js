@@ -7,9 +7,11 @@ import useTrendingMovies from "../hooks/useTrendingMovies";
 import useUpcomingSeries from "../hooks/useUpcomingSeries";
 import GptSearch from "./GptSearch";
 import { useSelector } from "react-redux";
+import ShowMovieDetails from "./ShowMovieDetails";
 
 const Browse = () => {
   const showGptSearch = useSelector((store) => store.gpt.showGptSearch);
+  const showMovieDetailsFlag = useSelector(store => store.movies.showMovieDetailsFlag);
   useNowPlayingMovies();
   usePopularMovies();
   useTrendingMovies();
@@ -32,6 +34,8 @@ const Browse = () => {
           <SecondaryContainer />
         </>
       )}
+
+     {showMovieDetailsFlag && <ShowMovieDetails />}
     </div>
   );
 };

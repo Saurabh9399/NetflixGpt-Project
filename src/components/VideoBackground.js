@@ -4,8 +4,6 @@ export const VideoBackground = ({ movieID }) => {
   //fetch trailer
   const trailerVideo = useMovieTrailer(movieID);
 
-  console.log(trailerVideo);
-
   return (
     <div className="-mt-[6.5rem]">
       <iframe
