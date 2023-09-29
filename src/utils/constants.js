@@ -23,6 +23,6 @@ export const SUPPORTED_LANGUAGES = [
   { identifier: "spanish", name: "Spanish" },
 ];
 
-console.log("env...", process.env);
+console.log("env...", process.env, process.env.REACT_APP_OPENAI);
 
 export const OPENAI_KEY = process.env.REACT_APP_OPENAI;
