@@ -24,6 +24,6 @@ export const SUPPORTED_LANGUAGES = [
   { identifier: "spanish", name: "Spanish" },
 ];
 
-console.log("env...", process.env, process.env.REACT_APP_OPENAI);
+console.log("env...", process.env, process.env.TMDB_KEY);
 
 export const OPENAI_KEY = "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";
